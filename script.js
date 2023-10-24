@@ -15,6 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
             firstOperand = parseFloat(currentInput);
             currentOperation = value;
             currentInput = "";
+        } else if (value === '%') {
+            if (firstOperand !== null && currentOperation && currentInput !== "") {
+                // Calculate % value of firstOperand
+                currentInput = (firstOperand * parseFloat(currentInput) / 100).toString();
+                display.textContent = currentInput;
+            } else {
+                // Standalone % operation, divide by 100
+                currentInput = (parseFloat(currentInput) / 100).toString();
+                display.textContent = currentInput;
+            }
         } else if (value === '=') {
             if (firstOperand !== null) {
                 const secondOperand = parseFloat(currentInput);
